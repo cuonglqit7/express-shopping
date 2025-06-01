@@ -2,11 +2,15 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRouter from "./src/routers/user";
+import cors from "cors";
 dotenv.config();
 
 const dbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS}@cluster0.kjf7znj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-
+const port = process.env.PORT || 8000;
 const app = express();
+
+app.use(express.json());
+app.use(cors());
 
 app.use("/auth", userRouter);
 
@@ -21,9 +25,9 @@ const connectDB = async () => {
 
 connectDB()
     .then(() => {
-        app.listen(process.env.PORT, (err: any) => {
+        app.listen(port, (err: any) => {
             if (err) {
-                throw new Error(err);
+                console.log(err);
             }
             console.log(
                 `Server is running at port http://localhost:${process.env.PORT}`
