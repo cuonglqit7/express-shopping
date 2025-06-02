@@ -126,7 +126,7 @@ const loginWithGoogle = async (req: any, res: any) => {
             delete newUser._doc.password;
 
             res.status(201).json({
-                message: "Register successfully.",
+                message: "Google login successfully.",
                 data: {
                     ...newUser._doc,
                     token: await getAccessToken({
@@ -144,4 +144,32 @@ const loginWithGoogle = async (req: any, res: any) => {
     }
 };
 
-export { register, login, loginWithGoogle };
+const refreshToken = async (req: any, res: any) => {
+    const { id } = req.query;
+
+    try {
+        const user = await UserModel.findById(id);
+
+        if (!user) {
+            throw new Error("Vui lòng đăng nhập!");
+        }
+
+        const token = await getAccessToken({
+            _id: id,
+            email: user.email as string,
+            rule: user.rule,
+        });
+
+        res.status(200).json({
+            message: "asdsad",
+            data: token,
+        });
+    } catch (error: any) {
+        console.log(error.message);
+        res.status(404).json({
+            message: error.message,
+        });
+    }
+};
+
+export { register, login, loginWithGoogle, refreshToken };
