@@ -18,6 +18,8 @@ const SupplierSchema = new Schema({
         default: 0,
         enum: [0, 1],
     },
+    email: String,
+    active: Number,
     createdAt: {
         type: Date,
         default: Date.now(),
@@ -25,6 +27,10 @@ const SupplierSchema = new Schema({
     updatedAt: {
         type: Date,
         default: Date.now(),
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false,
     },
 });
 
