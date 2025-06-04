@@ -6,11 +6,11 @@ import {
     register,
 } from "../controllers/user";
 
-const route = Router();
+const router = Router();
 
-route.post("/register", register);
-route.post("/login", login);
-route.post("/login-google", loginWithGoogle);
-route.get("/refresh-token", refreshToken);
+router.post("/register", register);
+router.post("/login", login);
+router.post("/login-google", loginWithGoogle);
+router.get("/refresh-token", refreshToken);
 
-export default route;
+export default router;
