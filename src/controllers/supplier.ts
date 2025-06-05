@@ -1,11 +1,22 @@
 import SupplierModel from "../models/SupplierModel";
 
-const getSuppliers = async (_req: any, res: any) => {
+const getSuppliers = async (req: any, res: any) => {
+    const { page, pageSize } = req.query;
+
     try {
-        const items = await SupplierModel.find({ isDeleted: false });
+        const skip = (page - 1) * pageSize;
+        const items = await SupplierModel.find({ isDeleted: false })
+            .skip(skip)
+            .limit(pageSize);
+
+        const total = await SupplierModel.countDocuments();
+
         res.status(200).json({
             message: "Products",
-            data: items,
+            data: {
+                items,
+                total,
+            },
         });
     } catch (error: any) {
         console.log(error);
