@@ -1,3 +1,4 @@
+import { formSupplier } from "../forms/supplierForm";
 import SupplierModel from "../models/SupplierModel";
 
 const getSuppliers = async (req: any, res: any) => {
@@ -79,4 +80,27 @@ const deleteSuplier = async (req: any, res: any) => {
     }
 };
 
-export { getSuppliers, addNew, update, deleteSuplier };
+const getForm = async (req: any, res: any) => {
+    try {
+        const form = {
+            title: "supplier",
+            layout: "horizontal",
+            labelCol: 8,
+            wrapperCol: 16,
+            size: "small",
+            fileUpload: true,
+            formItems: formSupplier,
+        };
+
+        res.status(200).json({
+            message: "Get form supplier successfully.",
+            data: form,
+        });
+    } catch (error: any) {
+        res.status(400).json({
+            message: error.message,
+        });
+    }
+};
+
+export { getSuppliers, addNew, update, deleteSuplier, getForm };
