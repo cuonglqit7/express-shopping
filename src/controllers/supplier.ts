@@ -83,7 +83,7 @@ const deleteSuplier = async (req: any, res: any) => {
 const getForm = async (req: any, res: any) => {
     try {
         const form = {
-            title: "supplier",
+            title: "Suppliers",
             layout: "horizontal",
             labelCol: 8,
             wrapperCol: 16,

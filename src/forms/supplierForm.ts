@@ -8,6 +8,7 @@ export const formSupplier = [
         placeholder: "Enter supplier name",
         type: "default",
         default_value: "",
+        displayLenght: 200,
     },
     {
         key: "product",
@@ -18,6 +19,7 @@ export const formSupplier = [
         placeholder: "Enter product",
         type: "default",
         default_value: "",
+        displayLenght: 150,
     },
     {
         key: "email",
@@ -28,17 +30,9 @@ export const formSupplier = [
         placeholder: "Enter email",
         type: "email",
         default_value: "",
+        displayLenght: 300,
     },
-    {
-        key: "active",
-        value: "active",
-        label: "Active",
-        required: false,
-        message: "",
-        placeholder: "Enter active",
-        type: "number",
-        default_value: "",
-    },
+
     {
         key: "category",
         value: "category",
@@ -48,6 +42,7 @@ export const formSupplier = [
         placeholder: "Select product category",
         type: "select",
         default_value: [],
+        displayLenght: 150,
     },
     {
         key: "price",
@@ -58,6 +53,7 @@ export const formSupplier = [
         placeholder: "Enter buying price",
         type: "number",
         default_value: "",
+        displayLenght: 100,
     },
     {
         key: "contact",
@@ -68,15 +64,28 @@ export const formSupplier = [
         placeholder: "Enter contact number",
         type: "tel",
         default_value: "",
+        displayLenght: 150,
     },
     {
         key: "type",
         value: "isTasking",
-        label: "Tasking return",
+        label: "Type",
         required: false,
         message: "",
         placeholder: "",
         type: "checkbox",
+        default_value: null,
+        displayLenght: 150,
+    },
+    {
+        key: "active",
+        value: "active",
+        label: "Active",
+        required: false,
+        message: "",
+        placeholder: "Enter active",
+        type: "number",
         default_value: "",
+        displayLenght: 80,
     },
 ];
