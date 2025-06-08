@@ -69,7 +69,7 @@ export const formSupplier = [
     {
         key: "type",
         value: "isTasking",
-        label: "Type",
+        label: "Tasking",
         required: false,
         message: "",
         placeholder: "",
