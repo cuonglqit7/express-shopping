@@ -13,11 +13,52 @@ const getSuppliers = async (req: any, res: any) => {
         const total = await SupplierModel.countDocuments();
 
         res.status(200).json({
-            message: "Products",
+            message: "Suppliers",
             data: {
                 items,
                 total,
             },
+        });
+    } catch (error: any) {
+        console.log(error);
+
+        res.status(404).json({
+            message: error.message,
+        });
+    }
+};
+
+const getExportData = async (req: any, res: any) => {
+    const { start, end } = req.query;
+    const body = req.body;
+
+    const filter: any = {};
+
+    if (start && end) {
+        filter.createdAt = {
+            $lte: end,
+            $gte: start,
+        };
+    }
+    try {
+        const items = await SupplierModel.find(filter);
+
+        const data: any = [];
+
+        if (items.length > 0) {
+            items.forEach((item: any) => {
+                const values: any = {};
+
+                body.forEach((key: any) => {
+                    values[`${key}`] = `${item._doc[`${key}`] ?? ""}`;
+                });
+
+                data.push(values);
+            });
+        }
+        res.status(200).json({
+            message: "Suppliers",
+            data: data,
         });
     } catch (error: any) {
         console.log(error);
@@ -103,4 +144,4 @@ const getForm = async (req: any, res: any) => {
     }
 };
 
-export { getSuppliers, addNew, update, deleteSuplier, getForm };
+export { getSuppliers, addNew, update, deleteSuplier, getForm, getExportData };
